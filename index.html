@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--
+MIT License
+Copyright 2017 Brian Akehurst.
+-->
+<html>
+    <head>
+        <title>Pig Invaders</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/pigsInSpace.css" type="text/css" rel="stylesheet">
+
+        <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="icons/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="256x256" href="icons/android-chrome-256x256.png">        
+        <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">       
+        <link rel="manifest" href="icons/manifest.json">
+        <link rel="mask-icon" href="icons/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="icons/favicon.ico">    
+        <meta name="msapplication-config" content="icons/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">     
+        <script data-main="js/main" src="js/libs/require.js"></script>        
+    </head>
+    <body>
+        <div id="container">
+            <div id="menuDiv">
+                <iframe id="menu" src="" class="menupage menuShow">
+                </iframe> 
+            </div>           
+            <div id="space">
+               <div class="selector">
+                   <div class="selectArm armSelected">
+                       <div class="armType">
+                           <div class="gunType"></div>
+                       </div>
+                       <div class="armQty" data-max="20">20</div>
+                   </div> 
+                   <div class="selectArm">
+                       <div class="armType">
+                           <div class="laserType"></div>                           
+                       </div>
+                       <div class="armQty" data-max="10">10</div>
+                   </div>                    
+                   <div class="selectArm">
+                       <div class="armType">
+                           <div class="missileType"></div>
+                       </div>
+                       <div class="armQty" data-max="5">5</div>
+                   </div>
+               </div>
+               <div id="planet"></div>
+               <div class="gameControl">
+                   <div class="gameTime">00:00:00</div><div class="quitButton">X</div>
+               </div>
+            </div>
+        </div>
+    </body>
+</html>

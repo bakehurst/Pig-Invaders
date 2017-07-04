@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<!--
+The MIT License
+Copyright 2017 Brian Akehurst.
+-->
+<html>
+    <head>
+        <title>Pig Invaders Menu English</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../css/menuMain.css" type="text/css" rel="stylesheet">      
+    </head>
+    <body>
+        <div class="menuContainer">
+            <div class="menuItem menuHeader">
+                Pig Invaders
+            </div>
+            <div id="principal" class="menu menuShow">
+                <div class="menuItem menuBody">
+                    <div  id="informationButton" class="menuPanel">
+                        Instructions
+                    </div>
+                    <div id="keyboardButton" class="menuPanel">
+                        Keyboard
+                    </div>
+                    <div id="scoresButton" class="menuPanel">
+                        Scores
+                    </div>
+                    <div id="langButton" class="menuPanel menuNoSelect">
+                        <select class="selectLang">
+                            <option value="EN">English</option>
+                            <option value="FR">French</option>                    
+                        </select>                       
+                        Language
+                    </div>
+                    <div id="soundButton" class="menuPanel menuNoSelect">
+                        Sounds
+                            <label class="soundSwitch switch">
+                                <input type="checkbox">
+                                <div class="slider round"></div>
+                            </label>  
+                    </div>                    
+                    <div class="menuSubTitle">
+                        You are a gunner on the allied space station protecting 
+                        the planet. Our reconnaissance probes indicate that 
+                        5 hostile pigs have entered orbit around our base planet.
+                        Your mission is to destroy them as quickly as possible.
+                        <br> Can you get them before they get you?
+                        <br> <br> If you are ready pressed on GO.
+                    </div>
+                </div>
+                <div class="menuItem menuFooter">
+                    <div class="button startButton">GO</div>
+                    <div class="fullscreen"></div>
+                </div>
+            </div>
+            <div id="information" class="menu">
+                <div class="menuItem menuBody scrollY">
+                    <div class="menuSubTitle">How to Play</div>
+                    You have 3 types of ammunition:- <br>
+                    <div class="arm">Bullets:</div>
+                    <div class="arm gunType"></div>   
+                    slow and the least powerful, but you have a lot 
+                    and they replenish quickly.<br>
+                    <div class="arm">Laser:</div>
+                    <div class="arm laserType"></div> 
+                    very fast and powerful, but replenishes more 
+                    slowly.<br>
+                    <div class="arm">Missile:</div>
+                    <div class="arm missileType"></div>                     
+                    fast and the most powerful, but replenishes very 
+                    slowly.
+                    <br>
+                    Bullets are set by default.
+                    To select a different one click/touch on the selector panel at 
+                    the top left of the screen.<br>
+                    You can control your gun with any combination of mouse, 
+                    keyboard or touch.
+                    To review or set keyboard keys go to the keyboard menu.
+                    Press the gun and drag it to the left or the right.
+                    Press anywhere in space and drag left or right;
+                    the gun barrel will follow your mouse or finger.
+                    Let go to fire. The weapon will past through your 
+                    release point.
+                </div>
+                <div class="menuItem menuFooter">
+                    <div class="button closeButton">Close</div>
+                </div>
+            </div>
+            <div id="scores" class="menu">
+                <div class="menuItem menuBody scrollY">
+                    <div class="menuSubTitle">Role of Honnor</div>
+                    <span class="scoreName">Gunner</span>
+                    <span class="scoreTime">Time</span><br>
+                    <ol></ol>
+                </div>
+                <div class="menuItem menuFooter">
+                    <div class="button closeButton">Close</div>
+                </div>
+            </div>
+            <div id="keyboard" class="menu">
+                <div class="menuItem menuBody scrollY">
+                    <div class="menuSubTitle">Keyboard Settings</div>
+                    <div id="keys">
+                        <div class="menuPanel keyPanel" data-name="moveLeft">
+                            Move Left
+                            <div class="keyValue">ArrowLeft</div>
+                        </div>
+                        <div class="menuPanel keyPanel" data-name="moveRight">
+                            Move Right
+                            <div class="keyValue"></div>                            
+                        </div>
+                        <div class="menuPanel keyPanel" data-name="rotateLeft">
+                            Rotate Left
+                            <div class="keyValue"></div>                            
+                        </div>
+                        <div class="menuPanel keyPanel" data-name="rotateRight">
+                            Rotate Right
+                            <div class="keyValue"></div>                           
+                        </div>
+                        <div class="menuPanel keyPanel" data-name="rotateCenter">
+                            Rotate to Center
+                            <div class="keyValue"></div>                            
+                        </div>
+                        <div class="menuPanel keyPanel" data-name="fire">
+                            Fire
+                            <div class="keyValue"></div>                            
+                        </div> 
+                    </div>
+                    <div class="menuPanel keyPanel" data-name="changeArm">
+                        Change Weapon
+                        <div class="keyValue">Tab</div>                            
+                    </div> 
+                    Press on an item or use the tab key to select, then press any key on 
+                    your keyboard to change the value of the selected item.
+                    The Tab key itself is reserved and cannot be used.
+                </div>
+                <div class="menuItem menuFooter">
+                    <div class="button closeButton">Close</div>
+                </div>
+            </div>
+            <div id="winner" class="menu">
+                <div class="menuItem menuBody">
+                    <div class="winnerMedal">                        
+                    </div>
+                    <div class="winnerPanel">
+                        <b>Champion Gunner</b><br>
+                        Congratulations the pigs are repelled.<br>
+                        <label>Enter Your Name</label><br>
+                    <input type="text" name="player" value="">                        
+                    </div>
+                </div>
+                <div class="menuItem menuFooter">
+                    <div class="button closeButton">Close</div>
+                </div>
+            </div>
+            <div id="loser" class="menu">
+                <div class="menuItem menuBody">
+                        <div class="pigsurround shuttle">
+                            <div class="pig"></div>
+                            <div class="pighelmet"></div>                         
+                            <div class="pigcarriage">
+                                <div class="pigturret"></div>                           
+                          </div>                         
+                        </div>
+                    <div class="loserPanel">
+                        <br>You Lost<br>
+                        Pigs will invade the planet
+                    </div>
+
+                </div>
+                <div class="menuItem menuFooter">
+                    <div class="button closeButton">Close</div>
+                </div>
+            </div>
+            <div id="portrait" class="menu">
+                <div class="menuItem menuBody">
+                    <div class="portWarning">
+                        The game does not work in portrait mode.<br>
+                        Change orientation to landscape.
+                    </div>
+                </div>
+                <div class="menuItem menuFooter">
+                </div>
+            </div>              
+        </div>
+    </body>
+</html>

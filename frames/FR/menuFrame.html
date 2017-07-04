@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!--
+The MIT License
+Copyright 2017 Brian Akehurst.
+-->
+<html>
+    <head>
+        <title>l'invasion des cochons Menu Français</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../css/menuMain.css" type="text/css" rel="stylesheet">     
+    </head>
+    <body>
+        <div class="menuContainer">
+            <div class="menuItem menuHeader">
+                l'invasion des cochons
+            </div>
+            <div id="principal" class="menu">
+                <div class="menuItem menuBody">
+                    <div  id="informationButton" class="menuPanel">
+                        Instructions
+                    </div>
+                    <div id="keyboardButton" class="menuPanel">
+                        Clavier
+                    </div>
+                    <div id="scoresButton" class="menuPanel">
+                        Scores
+                    </div>
+                    <div id="langButton" class="menuPanel menuNoSelect">
+                        <select class="selectLang">
+                            <option value="FR">Français</option>
+                            <option value="EN">Anglais</option>                  
+                        </select>                       
+                        La langue
+                    </div>
+                    <div id="soundButton" class="menuPanel menuNoSelect">
+                        Les sons
+                            <label class="soundSwitch switch">
+                                <input type="checkbox">
+                                <div class="slider round"></div>
+                            </label>  
+                    </div>                    
+                    <div class="menuSubTitle">
+                        Tu es un canonnier sur la station spatiale alliée 
+                        protégeant la planète. Nos sondes de reconnaissance
+                        indiquent que 5 porcs hostiles ont entré en orbite
+                        autour de notre planète de base. Ton mission est de
+                        les détruire le plus rapidement possible.
+                        <br> Peux-tu les battre avant qu'ils ne te battent?
+                        <br> <br> Si tu es prêt appuies sur GO.
+                    </div>
+                </div>
+                <div class="menuItem menuFooter">
+                    <div class="button startButton">GO</div>
+                    <div class="fullscreen"></div>                    
+                </div>
+            </div>
+            <div id="information" class="menu">
+                <div class="menuItem menuBody scrollY">
+                    <div class="menuSubTitle">Comment jouer</div>
+                    Tu as 3 types de munitions: - <br>
+                    <div class="arm">Balles:</div>
+                    <div class="arm gunType"></div>   
+                    Lent et le moins puissant, mais tu as beaucoup                     
+                    et ils se reconstituent rapidement.
+                    <br>
+                    <div class="arm">Laser:</div>
+                    <div class="arm laserType"></div> 
+                    Très rapide et puissant, mais reconstituent plus lentement.
+                    <br>
+                    <div class="arm">Missile:</div>
+                    <div class="arm missileType"></div>                     
+                    Rapide et le plus puissant, mais reconstituent très lentement.
+                    <br>
+                    Les balles sont définies par défaut. Pour sélectionner un
+                    autre clic / touche sur le sélecteur au en haut à 
+                    gauche de l'écran.<br>
+                    Tu peux contrôler ton canon avec n'importe quelle combinaison
+                    de souris, clavier ou touche.  
+                    Pour réviser ou régler les touches du clavier, 
+                    accèdes au menu du clavier.  Appuies sur le canon et 
+                    fais-le glisser vers la gauche ou vers la droite.  
+                    Appuies sur n'importe où dans l'espace et fais glisser 
+                    vers la gauche ou vers la droite;  Le canon suivra ta souris
+                    ou ton doigt.  Relâche-le pour lancer le feu. La munition 
+                    passera par ton  point de relâche..
+                </div>
+                <div class="menuItem menuFooter">
+                    <div class="button closeButton">Fermer</div>
+                </div>
+            </div>
+            <div id="scores" class="menu">
+                <div class="menuItem menuBody scrollY">
+                    <div class="menuSubTitle">Rôle de l'honneur</div>
+                    <span class="scoreName">Canonnier</span>
+                    <span class="scoreTime">Temps</span><br>
+                    <ol></ol>
+                </div>
+                <div class="menuItem menuFooter">
+                    <div class="button closeButton">Fermer</div>
+                </div>
+            </div>
+            <div id="keyboard" class="menu">
+                <div class="menuItem menuBody scrollY">
+                    <div class="menuSubTitle">Paramètres du clavier</div>
+                    <div id="keys">
+                        <div class="menuPanel keyPanel" data-name="moveLeft">
+                            Se déplacer à gauche
+                            <div class="keyValue">ArrowLeft</div>
+                        </div>
+                        <div class="menuPanel keyPanel" data-name="moveRight">
+                            Déplacer vers la droite
+                            <div class="keyValue"></div>                            
+                        </div>
+                        <div class="menuPanel keyPanel" data-name="rotateLeft">
+                            Tourne à gauche
+                            <div class="keyValue"></div>                            
+                        </div>
+                        <div class="menuPanel keyPanel" data-name="rotateRight">
+                            Tourner à droite
+                            <div class="keyValue"></div>                           
+                        </div>
+                        <div class="menuPanel keyPanel" data-name="rotateCenter">
+                            Centrer le canon
+                            <div class="keyValue"></div>                            
+                        </div>
+                        <div class="menuPanel keyPanel" data-name="fire">
+                            Tirer
+                            <div class="keyValue"></div>                            
+                        </div> 
+                    </div>
+                    <div class="menuPanel keyPanel" data-name="changeArm">
+                        Changer de munitions
+                        <div class="keyValue">Tab</div>                            
+                    </div> 
+                    Appuies sur un élément ou utilises la touche Tab pour
+                    sélectionner, puis appuies sur n'importe quelle touche de 
+                    ton clavier pour changer la valeur de l'élément sélectionné.
+                    La touche Tab est elle-même réservée et ne peut pas être utilisée
+                </div>
+                <div class="menuItem menuFooter">
+                    <div class="button closeButton">Fermer</div>
+                </div>
+            </div>
+            <div id="winner" class="menu">
+                <div class="menuItem menuBody">
+                    <div class="winnerMedal">                        
+                    </div>
+                    <div class="winnerPanel">
+                        <b>Champion Canonnier</b><br>
+                        Félicitations, les cochons sont repoussés.<br>
+                        <label>Entres ton nom</label><br>
+                    <input type="text" name="player" value="">                        
+                    </div>
+                </div>
+                <div class="menuItem menuFooter">
+                    <div class="button closeButton">Fermer</div>
+                </div>
+            </div>
+            <div id="loser" class="menu">
+                <div class="menuItem menuBody">
+                        <div class="pigsurround shuttle">
+                            <div class="pig"></div>
+                            <div class="pighelmet"></div>                         
+                            <div class="pigcarriage">
+                                <div class="pigturret"></div>                           
+                          </div>                         
+                        </div>
+                    <div class="loserPanel">
+                        <br>Tu as perdu<br>
+                        Les cochons envahiront la planète
+                    </div>
+
+                </div>
+                <div class="menuItem menuFooter">
+                    <div class="button closeButton">Fermer</div>
+                </div>
+            </div>
+            <div id="portrait" class="menu">
+                <div class="menuItem menuBody">
+                    <div class="portWarning">
+                        Le jeu ne fonctionne pas en mode portrait.<br>
+                         Changer l'orientation à mode paysage
+                    </div>
+                </div>
+                <div class="menuItem menuFooter">
+                </div>
+            </div>             
+        </div>
+    </body>
+</html>
