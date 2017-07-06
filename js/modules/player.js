@@ -103,7 +103,7 @@ var player = function(space,options) {
         mouseUp();
     };
     function touchMove(e) {
-        //e.preventDefault();
+        e.preventDefault();
         if(e.targetTouches.length > 0){
             mouseMove(e.targetTouches[0]);
         }       

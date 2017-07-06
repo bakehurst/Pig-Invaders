@@ -1,18 +1,20 @@
 {
-    "name": "",
+    "short_name":"Pig Invaders",
+    "name": "Pig Invaders",
     "icons": [
         {
-            "src": "/android-chrome-192x192.png",
+            "src": "../icons/android-chrome-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "/android-chrome-384x384.png",
-            "sizes": "384x384",
+            "src": "../icons/android-chrome-256x256.png",
+            "sizes": "256x256",
             "type": "image/png"
         }
     ],
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
-    "display": "standalone"
+    "display": "standalone",
+    "orientation":"landscape"
 }

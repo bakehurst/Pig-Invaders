@@ -35,9 +35,12 @@ body{
     background-color:white;
     overflow: hidden;    
     color: white;
-    font-size: 25px;   
+/*      
+    font-size: 25px;
+  
     height:100vh;
     width:100vw;
+*/    
     background-image: url("../images/espace.png");
     background-repeat:repeat;    
 }
@@ -66,7 +69,7 @@ body{
 #space {
     position: relative;
     background-color:black;
-    
+    font-family: "Vedanda";
     background-image: url("../images/espace.png");
     background-repeat:repeat;
     
@@ -78,7 +81,7 @@ body{
     transform-style: preserve-3d;    
     perspective: 10000px;
     perspective-origin: 1000px -250px;   
-    visibility:hidden;
+    display:none;
 }
 .gameControl {
    position: absolute;
@@ -113,15 +116,19 @@ Arm selector panel start
 .selector {
     position:absolute;
     top:0;
+    /*
     width:12vw;    
     height:17vh;
+    */
+    width:12%;
+    height:18%;
     min-height: 80px;
     font-size: 0;
     z-index: 100;
 }
 .selectArm {
    width: calc(100% - 10px);
-   height:calc(33% - 8px);
+   height:calc(33% - 10px);
    margin: 4px;
    border: 2px outset darkorange;
    background: linear-gradient(135deg,rgb(240,125,0) 0%, rgb(255,200,50) 100%)  
@@ -195,15 +202,22 @@ Arm selector panel end
 }
 #planet {
     position: absolute;
+    /*
     width : 150vh;
     height: 150vh;
     top:20vh;
     right:-70vh;
-    transform: rotateX(30deg);   
+    transform: rotateX(30deg);
+    */
+    width: 100%;
+    height:150%;
+    top:20%;
+    left:60%;
     background-color: black;
-    background-image:radial-gradient(black 30%, rgb(100,100,100)); 
+    background-image:radial-gradient(black 20%, rgb(130,130,130)); 
     border-radius: 50%;
-    border: 5px solid rgba(200,200,200,0.2); 
+    border: 5px solid rgba(200,200,200,0.2);
+    z-index: 0;
 }
 .surround {
    position: absolute;   
@@ -235,7 +249,7 @@ Arm selector panel end
 .gunsurround {
    height:8vh;
    width:12vh;
-   z-index: 1000;
+   z-index: 5000;
 }
 .carriage {
    position: relative;
@@ -282,7 +296,7 @@ Arm selector panel end
    border-radius: 50%;
    background-color:inherit;
    background: inherit;
-   z-index: 500;   
+   /*z-index: 500;   */
 }
 .pigturret {
     position: relative;
@@ -304,7 +318,7 @@ Arm selector panel end
    border-radius: 0 0 10px 10px;
    background-color: inherit;
    background: inherit;
-   z-index: 500;
+  /* z-index: 500;*/
 }
 .percent {
    position: absolute;

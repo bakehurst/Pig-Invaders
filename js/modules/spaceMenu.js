@@ -41,15 +41,17 @@ define([
         var hidden = false;
         return function(hide) {
             if(hide !== undefined) {
-                hidden = hide;
+                hidden = hide;              
                 if(hidden === true) {
                     menuDiv.style.display = "none";
-                    gameContainer.style.visibility = "visible";
+                    //gameContainer.style.visibility = "visible";
+                    gameContainer.style.display = "block";
                     document.documentElement.focus();
                 }
                 else {
                     menuDiv.style.display = "flex";
-                    gameContainer.style.visibility = "hidden";                    
+                    //gameContainer.style.visibility = "hidden"; 
+                    gameContainer.style.display = "none";                      
                 }
             }
             return hidden;
@@ -264,8 +266,15 @@ define([
         keyboardMenu(doc,doc.querySelector("#keyboard"));       
         scoresMenu(doc.querySelector("#scores"));
     };
+    
+    var resizeEnd = utils.debounce(function(){
+            container.style.width = window.innerWidth+"px";
+            container.style.height = window.innerHeight+"px";
+        },250);
+        
     function init(space,events) {
-        container = document.querySelector("#container");     
+        container = document.querySelector("#container");
+        window.addEventListener("resize",resizeEnd);        
         gameContainer = space;
         gameContainer.addEventListener("orientation",orientation);        
         gameEvents = events;        

@@ -29,22 +29,22 @@ THE SOFTWARE.
 body{
     margin: 0;
     padding: 0;
-   /* background-color: black;*/
     overflow: hidden;
 }
 
 .menuContainer {
- /*background-color: black;*/
+ width:100%;
+ height:100%;
  overflow: hidden;
  font-size: 0;
+ font-family: "Vedanda";
 }
 .menu {
     display: none;
-    clear: both;    
-    width:100vw;
-    height:100vh;
+    clear: both;
+    width:100%;
+    height:100%;
     font-size: 0;
-    /*overflow: hidden;*/
 }
 .menuShow {
     display: block;
@@ -57,10 +57,8 @@ body{
 }
 .menuHeader {
     height:8%;
-    /*padding: 1% 0 1% 0;*/
     font-size:6vh;
-    text-align: center;   
-    /*background: pink;   */     
+    text-align: center;      
 }
 .selectLang {
     float:right;
@@ -76,15 +74,13 @@ body{
     text-align: center;    
 }
 .menuBody {
-    position: relative;
-    height:78%;
+    position: relative;  
+    height:100%;
+    height:76vh;
     font-size:4vh;   
-   /* background: yellow;   */
 }
 .menuPanel {
   cursor: pointer;
-  /*padding: 2px;*/
-  /*margin: 3px 0 3px 0;*/
   margin-bottom: 3px;
   border: 1px outset gray;
   color:black;
@@ -156,24 +152,25 @@ input:checked + .slider:before {
     overflow-y: auto;
 }
 .winnerPanel {
- text-align: center;
+    text-align: center;
+    width:100%;
+    height:100%;
 }
 .winnerPanel input {
-   margin:0.5vh;
    font-size:inherit;
+   margin:0.5%;  
    width:40%;
-   height:4.5vh;
+   height:4.5%;   
 }
 .winnerMedal {
     position: relative;
-    width:70%;
-    height:70%;
-    margin: auto;
+    width:60%;
+    height:60%;
+    margin: 2px auto 2px auto;
     background-image: url("../images/medal.png");
     background-repeat: no-repeat;
     background-size: 50%;
-    background-position: center;    
-   
+    background-position: center;      
 }
 .loserPanel {
     position: relative;
@@ -201,8 +198,6 @@ input:checked + .slider:before {
 .menuFooter {
    height:8%;
    padding: 1% 0 1% 0;  
-  /* background: green;*/
-    
 }
 .fullscreen {
     position: absolute;
@@ -265,7 +260,6 @@ input:checked + .slider:before {
     top:5vh;
     width:40vh;
     height:45vh;
-    /*background-color: black;*/
 }
 .pigcarriage {
    position: absolute;

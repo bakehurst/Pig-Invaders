@@ -107,8 +107,8 @@ define([
             maxLength:250,
             rotate:0,
             radius:50,            
-            speed: 4,
-            strength:6, 
+            speed: 4.5,
+            strength:7, 
             soundFile:"blueray.mp3"           
         }         
     },

@@ -72,16 +72,16 @@ define([
             };            
           
         function end() {
-            dispose();
+            container.removeEventListener("resizestart",pause);
+            container.removeEventListener("resizeend",unpause);
+            container.removeEventListener("gameend",stop);
             if(container.contains(base)) {
                 container.removeChild(base);
                 base.innerHTML = "";
             }
         };
         function dispose() {
-            container.removeEventListener("resizestart",pause);
-            container.removeEventListener("resizeend",unpause);
-            container.removeEventListener("gameend",stop);            
+            stop();
         };
         function stop() {
            window.cancelAnimationFrame(requestID);

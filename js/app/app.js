@@ -29,7 +29,8 @@ define([
     'modules/spaceMenu'
 ], function (utils,spacePlayer,spacePigs,menu) {
     
-    var container       = undefined,
+    var container = undefined,
+        chapter1Container       = undefined,
         quitButton      = undefined,
         gameStartEvent  = new CustomEvent("gamestart",{
                                     detail: {
@@ -68,20 +69,21 @@ define([
         resizeStart = utils.debounce(function(){
             changeEventStart.detail.width = window.innerWidth;
             changeEventStart.detail.height = window.innerHeight;
-            container.dispatchEvent(changeEventStart);
+            chapter1Container.dispatchEvent(changeEventStart);
         },250,true),        
         resizeEnd = utils.debounce(function(){
             var w = window.innerWidth, h =  window.innerHeight;
             changeEventEnd.detail.width = w;
             changeEventEnd.detail.height = h;
-            if(h < w) {
+            containerSize(w,h);
+            if(h < w) {  
                 orientationEvent.detail.mode = "landscape";
-                container.dispatchEvent(changeEventEnd);
-                container.dispatchEvent(orientationEvent);                
+                chapter1Container.dispatchEvent(changeEventEnd);
+                chapter1Container.dispatchEvent(orientationEvent);                
             }
             else {
                 orientationEvent.detail.mode = "portrait";
-                container.dispatchEvent(orientationEvent);                
+                chapter1Container.dispatchEvent(orientationEvent);                
             }
         },250);              
    
@@ -94,15 +96,15 @@ define([
         changeEventStart.detail.width = w;
         changeEventStart.detail.height = h;        
         if(h > w) {
-            container.dispatchEvent(changeEventStart);
+            chapter1Container.dispatchEvent(changeEventStart);
             orientationEvent.detail.mode = "portrait";
-            container.dispatchEvent(orientationEvent);      
+            chapter1Container.dispatchEvent(orientationEvent);      
         }     
     }
 
-    function startGame(e) {
+    function startGame(e) {        
        events();
-       quitButton.addEventListener("click",quitGame);
+       quitButton.addEventListener("click",quitGame);     
        switch(e.detail.chapter) {
            case 1:startChapter1();
                 break;
@@ -122,8 +124,8 @@ define([
             elapse:0,
             time:0           
         };
-        var player = spacePlayer.init(container,gameEndEvent);
-        spacePigs.init(container,[player],gameEndEvent);   
+        var player = spacePlayer.init(chapter1Container,gameEndEvent);
+        spacePigs.init(chapter1Container,[player],gameEndEvent);   
         spacePlayer.selectorInit(spacePigs.getPigs());         
     };
     function startChapter2() {
@@ -135,23 +137,30 @@ define([
     function quitGame(e) {
         e.stopPropagation();
         gameEvents.end.detail.winner = "abandon";
-        container.dispatchEvent(gameEvents.end);
+        chapter1Container.dispatchEvent(gameEvents.end);
     };
     function endGame(e) {
         window.removeEventListener("resize",resizeStart);
         window.removeEventListener("resize",resizeEnd);
         quitButton.removeEventListener("click",quitGame);     
     };
+    function containerSize(w,h) {
+        container.style.width = w+"px";
+        container.style.height = h+"px";       
+    }
+
     function init(doc) {
-        container = doc.querySelector("#space");
-        quitButton = container.querySelector(" .quitButton");
-        container.addEventListener("gamestart",startGame,false);
-        container.addEventListener("gameend",  endGame,false);
+        container = doc.querySelector("#container");
+        chapter1Container = doc.querySelector("#space");
+        quitButton = chapter1Container.querySelector(" .quitButton");
+        chapter1Container.addEventListener("gamestart",startGame,false);
+        chapter1Container.addEventListener("gameend",  endGame,false);
         utils.fullScreenChange(function(){
                 utils.orientation("landscape");
-                container.dispatchEvent(changeEventEnd);
-        });         
-        menu.init(container,gameEvents);
+                chapter1Container.dispatchEvent(changeEventEnd);
+        }); 
+        containerSize(window.innerWidth,window.innerHeight);
+        menu.init(chapter1Container,gameEvents);
     };
     return {
        init:init 
