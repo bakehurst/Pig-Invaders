@@ -300,6 +300,25 @@ define([
     function getOrbit(type) {
         return orbits[type];        
     };
+    function soundFiles() {
+        var arr = [];
+        for(var a in arms) {
+            var arm = arms[a];
+            if(!arr.includes(arm.soundFile)) {
+                arr.push(arm.soundFile);
+            }
+            if(!arr.includes(arm.explosion.soundFile)) {
+               arr.push(arm.explosion.soundFile);
+            }
+        }
+        for(var p in playerParams) {
+            var player = playerParams[p];
+            if(!arr.includes(player.explosion.soundFile)) {
+               arr.push(player.explosion.soundFile);
+            }            
+        }
+        return arr;
+    };
     function lang(l) {
         if(l !== undefined) {
             playerParams.spacePlayer.lang = l;
@@ -366,6 +385,7 @@ define([
         addType:addType,
         playerOptions:playerOptions,
         getOrbit:getOrbit,
+        soundFiles:soundFiles,
         lang:lang,
         keyboard:keyboard,
         scores:scores,

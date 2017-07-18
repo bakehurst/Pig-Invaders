@@ -44,13 +44,11 @@ define([
                 hidden = hide;              
                 if(hidden === true) {
                     menuDiv.style.display = "none";
-                    //gameContainer.style.visibility = "visible";
                     gameContainer.style.display = "block";
                     document.documentElement.focus();
                 }
                 else {
                     menuDiv.style.display = "flex";
-                    //gameContainer.style.visibility = "hidden"; 
                     gameContainer.style.display = "none";                      
                 }
             }
@@ -71,13 +69,7 @@ define([
             return selected;
         };
     })();
-    
-    function startHandler() {
-        toggleMenu(true);
-        gameEvents.start.detail.chapter = 1; // from Local when more chapters
-        gameEvents.end.detail.chapter = 1;        
-        gameContainer.dispatchEvent(gameEvents.start);
-    }; 
+
     function closeHandler() {
         selectSubMenu(principal);
     };
@@ -105,25 +97,35 @@ define([
         selectLang((this.options[this.selectedIndex]).value);
     };
     function principalMenu(prince) {
+        principal = prince;
+        var soundButton = principal.querySelector("#soundButton input");
+        soundButton.checked = !sounds.mute();
+        selectSubMenu(principal); 
+        
         function handleSoundSelect() {
-            sounds.mute(factory,!this.checked);
+            sounds.mute(!this.checked);            
         };
         function handleFullScreen() {
             utils.fullScreen();            
         };
-        principal = prince;
-        selectSubMenu(principal);
+        function startHandler() {
+            sounds.load(factory.soundFiles());
+            toggleMenu(true);
+            gameEvents.start.detail.chapter = 1; //from Local when more chapters
+            gameEvents.end.detail.chapter = 1;        
+            gameContainer.dispatchEvent(gameEvents.start);
+        };
+
         principal.querySelector(" .startButton").addEventListener(
                                                         "click",startHandler);
+                                                
         principal.querySelector(" .selectLang").addEventListener(
                                                 "change",handleSelectLang);
    
-        principal.querySelector("#soundButton input").addEventListener(
-                "change",handleSoundSelect);
-        principal.querySelector(" .fullscreen").addEventListener(
-                                                    "click",handleFullScreen);
-                                            
+        soundButton.addEventListener("change",handleSoundSelect);
         
+        principal.querySelector(" .fullscreen").addEventListener(
+                                                    "click",handleFullScreen); 
     };    
     function infoMenu(information) {
         information.querySelector(" .closeButton").addEventListener(

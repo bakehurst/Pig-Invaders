@@ -25,7 +25,6 @@ requirejs.config({
     //enforceDefine: true,
     baseUrl:'js',
     paths:{
-        text:'libs/text',
         domReady:'libs/domReady'
     }
 });

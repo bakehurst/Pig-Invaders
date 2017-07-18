@@ -25,55 +25,52 @@
 define([
     "modules/utilities"
 ], function (utils) {
-        var factory     = null,
-            muted       = true,
-            dir         = "./sounds/",
-            loaded      = false,
-            soundBites  = {};
-            function loadSounds() {
-               var arms = factory.settings();
-                if(loaded) return;
-                for(var a in arms ) {
-                    var arm = arms[a];
-                    if(!soundBites.hasOwnProperty(arm.soundFile)) {
-                       soundBites[arm.soundFile] =  
-                                    utils.createsoundbite(dir+arm.soundFile); 
+    var soundBites  = {};     
+            
+    var load = (function(){
+        var loaded      = false,
+            dir         = "./sounds/";
+
+        function loadSounds(soundFiles) {
+            if(!loaded) {
+                soundFiles.forEach(function(file){
+                    if(!soundBites.hasOwnProperty(file)){
+                         soundBites[file] = utils.createsoundbite(dir+file);                    
                     }
-                    if(!soundBites.hasOwnProperty(arm.explosion.soundFile)){
-                       soundBites[arm.explosion.soundFile] =  
-                             utils.createsoundbite(dir+arm.explosion.soundFile);                        
-                    }
-                }
-                var playerParams = factory.playerOptions();
-                for(var p in playerParams) {
-                    var player = playerParams[p];
-                    if(!soundBites.hasOwnProperty(player.explosion.soundFile)) {
-                       soundBites[player.explosion.soundFile] =  
-                          utils.createsoundbite(dir+player.explosion.soundFile);                        
-                    }                   
-                };
-                loaded = true;
-            };
-            function mute(fact,m) {
-               factory = fact;
-               if(m !== undefined)  {
-                   muted = m;
-                   if(!loaded) {
-                      loadSounds(); 
-                   }
-               }
-               return muted;
-            };         
-            function play(soundFile) {
-                if(!muted) {
-                    var sound = soundBites[soundFile];
-                    if(sound) {
-                        sound.play();
-                    }
-                }
-            };
+                });               
+            }
+            return true;
+            
+        };
+        return function(soundFiles) {
+            if(soundFiles !== undefined){                       
+               loaded = loadSounds(soundFiles); 
+            }
+            return loaded;
+        };
+
+    }());
+
+    var mute = (function(){
+        var muted = false;
+        return function (m) {
+            if(m !== undefined) {
+                muted = m;
+            }
+            return muted;
+        };
+    }());         
+    function play(soundFile) {
+        if(!mute()) {
+            var sound = soundBites[soundFile];
+            if(sound) {
+                sound.play();
+            }
+        }
+    };
 
     return {
+        load:load,
         mute:mute,
         play:play
     };
