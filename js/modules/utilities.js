@@ -213,36 +213,83 @@ function orientation(orient) {
    }catch(e){};      
 };
 
-var fullScreen = (function(){
+var enterFullScreen = (function(){
     var func = null;
     if(document.documentElement.requestFullscreen) {
-        func = function(){
-            document.documentElement.requestFullscreen();
+        func = function(el){
+            el.requestFullscreen();
+            return true;
         }; 
     }
     else if(document.documentElement.mozRequestFullScreen) {
-        func = function(){
-            document.documentElement.mozRequestFullScreen();
+        func = function(el){;
+            el.mozRequestFullScreen();
+            return true;
         };     
     }
     else if(document.documentElement.webkitRequestFullscreen) {
-        func = function() {
-            document.documentElement.webkitRequestFullscreen();
+        func = function(el) {
+            el.webkitRequestFullscreen();
+            return true;
         };      
     }
     else if(document.documentElement.msRequestFullscreen) {
-        func = function() {
-            document.documentElement.msRequestFullscreen();
+        func = function(el) {
+            el.msRequestFullscreen();
+            return true;
         };       
     }
-    return function() {
+    return function(element) {
         if(func !== null) {
-            return func.call();
+            return func(element || document.documentElement);          
         }
-        return null;
+        return false;
     };
 }());
 
+var exitFullScreen = (function(){
+    var func = null;
+    if(document.exitFullscreen) {
+        func = function() {
+            document.exitFullscreen();
+            return true;
+        };
+    } else if(document.mozCancelFullScreen) {
+        func = function() {
+            document.mozCancelFullScreen();
+            return true;
+        };
+    } else if(document.webkitExitFullscreen) {
+        func = function() {
+            document.webkitExitFullscreen();
+            return true;
+        };
+    }else if(document.msExitFullscreen) {
+        func = function() {
+            document.msExitFullscreen();
+            return true;
+        };
+    }    
+    return function() {
+        if(func !== null) {
+            return func.apply();
+        }
+        return false;
+    };        
+}());
+
+function toggleFullScreen(element) {
+    if(document.fullscreenElement || 
+       document.mozFullScreenElement || 
+       document.webkitFullscreenElement ||
+       document.msFullscreenElement){
+       exitFullScreen();
+    }
+    else {
+        enterFullScreen(element);
+    }   
+};
+        
 function fullScreenChange(callback) {
     if(document.onfullscreenchange) {
         document.onfullscreenchange = callback;
@@ -374,7 +421,9 @@ Full Screen and orientaion End
         localStorage:   localStorage,
         orientation:    orientation,
         createsoundbite:createsoundbite,
-        fullScreen:     fullScreen,
+        enterFullScreen:enterFullScreen,
+        exitFullScreen:exitFullScreen,
+        toggleFullScreen:toggleFullScreen,        
         fullScreenChange:fullScreenChange
     };
 });

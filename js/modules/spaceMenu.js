@@ -106,7 +106,7 @@ define([
             sounds.mute(!this.checked);            
         };
         function handleFullScreen() {
-            utils.fullScreen();            
+            utils.toggleFullScreen(document.documentElement);            
         };
         function startHandler() {
             sounds.load(factory.soundFiles());
