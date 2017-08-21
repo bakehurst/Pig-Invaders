@@ -112,7 +112,7 @@ Behavior.prototype = {
                 pig.aim();
                 pig.fire();
                 pos.angle = utils.getRandomInt(
-                                        firePos.range.start,firePos.range.end);
+                               firePos.range.start,firePos.range.end);
                 pos.rotation = rotation+1;
             }
         });       

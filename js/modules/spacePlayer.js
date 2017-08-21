@@ -40,7 +40,7 @@ define([
             selected    = undefined,
             selectClass = "armSelected";
             
-        function clickHandler(e) {
+        function selectHandler(e) {
            e.stopPropagation();
            changeSelected(this); 
         };
@@ -105,7 +105,8 @@ define([
             div  = container.querySelector(" .selector");
             arms = [].slice.call(div.querySelectorAll(" .selectArm"));
             arms.forEach(function(arm,index){
-                arm.addEventListener("click",clickHandler,false);
+                arm.addEventListener("mousedown",selectHandler,false);
+                arm.addEventListener("touchstart",selectHandler,false);
                 var type = arm.querySelector(" .armType div").className;
                 var qtyDiv = arm.querySelector(" .armQty");
                 utils.removeClass(qtyDiv,"qtyflash");                

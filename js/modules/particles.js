@@ -25,6 +25,30 @@
 define([
     "modules/utilities"
 ], function (utils) {
+    var pool = (function(){
+        var elements = [];
+        
+        function put(el) {
+            el.setAttribute("style","");
+            elements.push(el);
+        };
+        function get() {
+            if(elements.length > 0) {
+                return elements.pop();
+            }
+            put(document.createElement('div'));
+            return get();
+        };
+        function clear() {
+            elements = [];
+        }
+        return {
+           put:put,
+           get:get,
+           clear:clear
+        };       
+    })();
+    
      function explosion(container) {
         var div = document.createElement("div");
 
@@ -38,19 +62,37 @@ define([
         };
         
         function explode(options,callback) {
+            var count = settings.particles;
             container.appendChild(div);
+            function transEnd() {
+               if(this && div && div.contains(this)) {
+                   this.removeEventListener("transitionend",transEnd);
+                    pool.put(this);
+                    div.removeChild(this);
+                    count --;
+               }
+               if(count < 1) {
+                    if(container && div && container.contains(div)) {
+                        container.removeChild(div); 
+                        div.innerHTML = "";
+                        if(typeof callback === "function"){
+                            callback();
+                        }
+                    }
+                }                
+            };
 
             for(var prop in options) {
                if(settings.hasOwnProperty(prop)) {
                    settings[prop] = options[prop];
                } 
             };
-            var count = settings.particles;
             for(var i = 0; i < settings.particles; i++) {
-                var particle = document.createElement("div");        
+                var particle = pool.get();
                 utils.addClass(particle,settings.className);
-                particle.style.left = settings.origin.x+"px";
-                particle.style.top = settings.origin.y+"px";
+                particle.style.transform = 
+                        "translate("+ settings.origin.x+"px, "+
+                                      settings.origin.y+"px)";                                                           
                 div.appendChild(particle);
                 particle.offsetHeight; //slow things, let browser compute style
                 var pos = {
@@ -64,33 +106,17 @@ define([
                                 settings.durationMax/10,settings.durationMax);
                 particle.style.animation = "yellowRed linear "+duration/3+"ms";
                 particle.style.transitionDuration =  duration+"ms";
-                particle.style.transitionTimingFunction = "linear";
                 particle.style.transform = "translate3d("+ 
                      pos.x +"px,"+ pos.y +"px,"+ pos.z +"px) scale("+pos.s+")";        
                 particle.style.backgroundColor = "red";
                 particle.style.opacity = 0.2;
-                particle.style.borderRadius = "50%";
-                particle.addEventListener('transitionend',function(){ 
-                   if(this && div && div.contains(this)) {
-                        div.removeChild(this);
-                        count --;
-                   }
-                   if(count < 1) {
-                        if(container && div && container.contains(div)) {
-                            container.removeChild(div); 
-                            div.innerHTML = "";
-                            if(typeof callback === "function"){
-                                callback();
-                            }
-                        }
-                    }
-                },false);  
+                particle.addEventListener('transitionend',transEnd);
             };                               
         };
         function stop() {
             div.innerHTML = "";
             try{
-               container.removeChild(div);
+               container.removeChild(div);               
             }catch(e){};
         };
         return {
@@ -100,7 +126,8 @@ define([
     };   
 
     return {
-        explosion:explosion
+        explosion:explosion,
+        dispose:pool.clear
     };
 });
 
